@@ -1,0 +1,13 @@
+{
+  "name": "uwcenterstack-hapticcontroller",
+  "version": "1.0.0",
+  "main": "./HapticController.js",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/UWEcoCAR2/UWCenterStack-HapticController.git"
+  },
+  "dependencies": {
+    "underscore": "~1.6.0",
+    "serialport": "~1.4.0"
+  }
+}
