@@ -6,7 +6,7 @@ module.exports = function(port) {
 
 	this.portOpen = false;
 
-	this.serialPort = new SerialPort(port, {baudrate: 57600}, function(error) { // RYAN: MAKE THIS THE CORRECT BAUDRATE
+	this.serialPort = new SerialPort(port, {baudrate: 9600}, function(error) { // RYAN: MAKE THIS THE CORRECT BAUDRATE
 		
 		// this function is called when the serial port is opened
 		if (error) {
@@ -23,17 +23,18 @@ module.exports = function(port) {
 
 	// Add your public functions here
 	
-	this.someFunction1 = function() {
+	this.mainPulse = function() {
 		if (this.portOpen) {
-			console.log('someFunction1');
-			this.serialPort.write('Write something\n');
+			console.log('mainPulse');
+			//this.serialPort.write('mf10c100p');
+			this.serialport.write('e');
 		}
 	}
 
 	this.someFunction2 = function() {
 		if (this.portOpen) {
 			console.log('someFunction2');
-			this.serialPort.write('Write something2\n');
+			this.serialPort.write('e');
 		}
 	}
 
