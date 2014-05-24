@@ -3,7 +3,7 @@
 
 var HapticController = require('./HapticController');
 
-var hapticController = new HapticController('SERIAL_PORT_OF_THE_ARDUINO'); // RYAN: PUT THE CORRECT SERIAL PORT HERE
+var hapticController = new HapticController('/dev/tty.usbmodem1451'); // RYAN: PUT THE CORRECT SERIAL PORT HERE
 
 // In typical JavaScript, we would use a callback function or events to notify us that
 // the the connection is ready, but we will keep it super simple for you and just wait
@@ -12,11 +12,20 @@ var hapticController = new HapticController('SERIAL_PORT_OF_THE_ARDUINO'); // RY
 setTimeout(function() {
 
 	// try writing
-	hapticController.someFunction1();
+	hapticController.setUp();
 
-	// wait 1000 ms before calling another function
-	setTimeout(function() {
-		hapticController.someFunction2();
-	}, 1000);
+	setTimeout(function(){
+		hapticController.mainPulse();
 
-}, 2000);
+		// wait 1000 ms before calling another function
+		setTimeout(function() {
+			hapticController.mainEnable();
+
+			setTimeout(function(){
+				hapticController.mainDisable();
+				process.exit(code=0);
+			}, 2000);
+		}, 4000);
+	}, 2000);
+
+}, 3000);
