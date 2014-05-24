@@ -1,5 +1,5 @@
 // Code out here will run when the module is loaded (see line 1 of test.js)
-var SerialPort = require('serialport').SerialPort;
+var SerialPort = require('serialPort').SerialPort;
 
 module.exports = function(port) {
 	// Code in here will run when a new class instance is created (see line 3 of test.js)
@@ -23,19 +23,112 @@ module.exports = function(port) {
 
 	// Add your public functions here
 	
-	this.mainPulse = function() {
-		if (this.portOpen) {
-			console.log('mainPulse');
-			//this.serialPort.write('mf10c100p');
-			this.serialport.write('e');
+	//this function sets up the frequency and pulse time for all three buzzers
+	this.setUp = function(){
+		if(this.portOpen || true){
+			this.serialPort.write('mf10.c10.lf10.c10.rf10.c10.');
+			return true;
+		} else {
+			return false;
 		}
 	}
 
-	this.someFunction2 = function() {
-		if (this.portOpen) {
-			console.log('someFunction2');
-			this.serialPort.write('e');
+	//sends a pulse command to the right motor
+	this.rightPulse = function(){
+		if(this.portOpen || true){
+			this.serialPort.write('rp');
+			return true;
+		} else {
+			return false;
 		}
 	}
 
+	//sends a pulse command to the left buzzer
+	this.leftPulse = function(){
+		if(this.portOpen || true){
+			this.serialPort.write('lp');
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	//sends a pulse command to the main buzzer
+	this.mainPulse = function(){
+		if(this.portOpen || true){
+			this.serialPort.write('mp');
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	//sends a enable command to the left buzzer
+	//will remain on untill leftDisable or
+	//leftPulse (turns off after the pulse duration)
+	this.leftEnable = function(){
+		if(this.portOpen || true){
+			this.serialPort.write('le');
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	//sends a enable command to the right buzzer
+	//will remain on untill rightDisable or
+	//rightPulse (turns off after the pulse duration)
+	this.rightEnable = function(){
+		if(this.portOpen || true){
+			this.serialPort.write('re');
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	//sends a enable command to the main buzzer
+	//will remain on untill mainDisable or
+	//mainPulse (turns off after the pulse duration)
+	this.mainEnable = function(){
+		if(this.portOpen || true){
+			this.serialPort.write('me');
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	//sends a disable command to the right buzzer
+	//turns off both a pulse and enable command
+	this.rightDisable = function(){
+		if(this.portOpen || true){
+			this.serialPort.write('rd');
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	//sends a disable command to the left buzzer
+	//turns off both a pulse and enable command
+	this.leftDisable = function(){
+		if(this.portOpen || true){
+			this.serialPort.write('ld');
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	//sends a disable command to the main buzzer
+	//turns off both a pulse and enable command
+	this.mainDisable = function(){
+		if(this.portOpen || true){
+			this.serialPort.write('md');
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
