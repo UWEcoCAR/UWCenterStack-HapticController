@@ -26,7 +26,7 @@ module.exports = function(port) {
 	//this function sets up the frequency and pulse time for all three buzzers
 	this.setUp = function(){
 		if(this.portOpen || true){
-			this.serialPort.write('mf10.c10.lf10.c10.rf10.c10.');
+			this.serialPort.write('mf35.c5.lf35.c5.rf35.c5.');
 			return true;
 		} else {
 			return false;
@@ -56,7 +56,7 @@ module.exports = function(port) {
 	//sends a pulse command to the main buzzer
 	this.mainPulse = function(){
 		if(this.portOpen || true){
-			this.serialPort.write('mp');
+			this.serialPort.write('mplprp');
 			return true;
 		} else {
 			return false;
@@ -92,7 +92,7 @@ module.exports = function(port) {
 	//mainPulse (turns off after the pulse duration)
 	this.mainEnable = function(){
 		if(this.portOpen || true){
-			this.serialPort.write('me');
+			this.serialPort.write('melere');
 			return true;
 		} else {
 			return false;
@@ -125,7 +125,7 @@ module.exports = function(port) {
 	//turns off both a pulse and enable command
 	this.mainDisable = function(){
 		if(this.portOpen || true){
-			this.serialPort.write('md');
+			this.serialPort.write('mdldrd');
 			return true;
 		} else {
 			return false;
